@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badho Visit Request Feature - Transform Digital Interest into Qualified Leads</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><path d="M0,60 C150,0 350,0 500,60 C650,120 850,120 1000,60 L1000,100 L0,100 Z"/></svg>') repeat-x;
+            background-size: 1000px 100px;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+        
+        .target-audience {
+            font-size: 1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        main {
+            padding: 0;
+        }
+        
+        .section {
+            padding: 3rem 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section h2 {
+            color: #2a5298;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+        
+        .intro-text {
+            font-size: 1.1rem;
+            color: #666;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            color: #2a5298;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .option-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .option-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .option-header {
+            padding: 2rem;
+            color: white;
+            position: relative;
+        }
+        
+        .option-card:nth-child(1) .option-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .option-card:nth-child(2) .option-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .option-header::before {
+            content: '🎯';
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        .option-card:nth-child(2) .option-header::before {
+            content: '📊';
+        }
+        
+        .option-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .recommended-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        
+        .option-content {
+            padding: 2rem;
+        }
+        
+        .option-content h4 {
+            color: #2a5298;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .data-format {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+        }
+        
+        .data-format h5 {
+            color: #28a745;
+            margin-bottom: 1rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .workflow-step {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .workflow-step h3 {
+            color: #2a5298;
+            margin-bottom: 1rem;
+        }
+        
+        .whatsapp-demo {
+            background: #25d366;
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .whatsapp-demo::before {
+            content: '📱 WhatsApp Notification';
+            display: block;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .benefit-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #28a745;
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .benefit-item h4 {
+            color: #2a5298;
+            margin-bottom: 1rem;
+        }
+        
+        .comparison-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .comparison-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .comparison-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .faq-section {
+            background: #f8f9fa;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            background: #2a5298;
+            color: white;
+            padding: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+        
+        .faq-answer {
+            padding: 1.5rem;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+        
+        .getting-started {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .step-card {
+            background: rgba(255,255,255,0.2);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .step-card h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-style: italic;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 2rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 2rem 1rem;
+            }
+            
+            header {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Visit Request Feature</h1>
+                <p class="subtitle">Transform Digital Interest into Qualified Leads</p>
+                <div class="target-audience">For Brand Partners • Field Sales Optimization</div>
+            </div>
+        </header>
+
+        <main>
+            <section class="section">
+                <div class="section-header">
+                    <h2>What is the Visit Request Feature?</h2>
+                    <p class="intro-text">
+                        We've built a functionality in the Badho app called <strong>Visit Request</strong> that appears on your brand page and brand cards. 
+                        When retailers are interested in your products but need assistance before ordering, they can request help directly through this feature.
+                    </p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🎯</span>
+                        <h3>High-Quality Leads</h3>
+                        <p>Pre-qualified leads delivered directly to your field team from retailers genuinely interested in your brand.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">⚡</span>
+                        <h3>Direct Integration</h3>
+                        <p>Works seamlessly with your existing field operations - no additional infrastructure required.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📱</span>
+                        <h3>Real-time Notifications</h3>
+                        <p>Instant WhatsApp alerts to relevant field executives with complete lead information.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🚀</span>
+                        <h3>Zero Setup Required</h3>
+                        <p>Your field executives don't need any app - everything works through WhatsApp and simple web links.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>Two Ways to Participate</h2>
+                </div>
+                
+                <div class="options-container">
+                    <div class="option-card">
+                        <div class="option-header">
+                            <h3>Option 1: Direct Field Executive Integration</h3>
+                            <span class="recommended-badge">Recommended</span>
+                        </div>
+                        <div class="option-content">
+                            <h4>What You Provide:</h4>
+                            <p>Field executive database in simple format:</p>
+                            
+                            <div class="data-format">
+                                <h5>Sample Data Format:</h5>
+                                <div>
+                                    <strong>Name:</strong> Rajesh Kumar<br>
+                                    <strong>Phone:</strong> +91-9876543210<br>
+                                    <strong>PIN Codes:</strong> 244001, 244002, 244003<br><br>
+                                    
+                                    <strong>Name:</strong> Priya Sharma<br>
+                                    <strong>Phone:</strong> +91-9876543211<br>
+                                    <strong>PIN Codes:</strong> 244004, 244005, 244006
+                                </div>
+                            </div>
+                            
+                            <h4>What You Get:</h4>
+                            <ul>
+                                <li>Instant WhatsApp notifications to relevant field executives</li>
+                                <li>Automated daily reminders until visit completion</li>
+                                <li>Location tracking at time of task completion</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <h3>Option 2: Manual Lead Management</h3>
+                        </div>
+                        <div class="option-content">
+                            <h4>If you prefer internal distribution:</h4>
+                            <ul>
+                                <li>Access <strong>Brand Dashboard</strong> with visit request section</li>
+                                <li>View all incoming requests with complete form details</li>
+                                <li>Manually assign leads to your preferred field executives</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>How It Works for Your Field Team</h2>
+                </div>
+                
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <h3>Instant Notification</h3>
+                        <p>Field executive receives WhatsApp notification with complete lead details and direct contact information.</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <h3>Daily Reminders</h3>
+                        <p>Automated follow-up messages ensure no lead is forgotten until visit is marked complete.</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <h3>Simple Completion</h3>
+                        <p>One-click completion via web link with automatic location capture for your analytics.</p>
+                    </div>
+                </div>
+                
+                <div class="whatsapp-demo">
+                    *New Retailer Lead – Action Required!*<br>
+                    Hello [Executive Name],<br><br>
+                    
+                    You have a new lead for [Your Brand]. A retailer is ready to connect and is requesting your rates. 📊<br><br>
+                    
+                    🚨 Lead Details:<br>
+                    🏪 Retailer: [Business Name]<br>
+                    📍 Address: [Complete Address]<br>
+                    🗺️ Google Maps Link: [Direct location link]<br>
+                    💬 Enquiry: [Specific requirements]<br><br>
+                    
+                    📞 Call Retailer Now: [Phone number link]
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>Customizable Lead Qualification</h2>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">📋</span>
+                        <h3>Standard Questions</h3>
+                        <p>Brand-specific product interest, type of assistance needed, business category and size, preferred contact method.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">⚙️</span>
+                        <h3>Custom Forms</h3>
+                        <p>Add your own questions to improve lead qualification with information that matters to your business.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>Fallback Support System</h2>
+                    <p class="intro-text">No lost opportunities due to coverage gaps</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-icon">🛡️</span>
+                    <h4>Complete Coverage</h4>
+                    <p>When you don't have field coverage, leads automatically route to our internal calling team who provide basic brand information and capture interest for your follow-up.</p>
+                </div>
+            </section>
+
+            <div class="comparison-section">
+                <h2>The Digital Opportunity: Inbound vs Outbound Sales</h2>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>📊 Traditional Field Sales Challenge</h4>
+                        <p>Your field executives visit 10-12 shopkeepers daily using their own judgment and local intelligence, achieving roughly <strong>50% conversion rates</strong>. This is <strong>outbound sales</strong> - visiting random prospects hoping to find interest.</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>🎯 Visit Request Advantage</h4>
+                        <p>Now you get <strong>pre-qualified, high-intent leads</strong> who have already shown genuine interest in your brand. These are <strong>inbound conversions</strong> - retailers actively seeking your products.</p>
+                    </div>
+                </div>
+                
+                <div class="benefits-grid" style="margin-top: 3rem;">
+                    <div class="benefit-item" style="border-top-color: white;">
+                        <span class="benefit-icon">📈</span>
+                        <h4>Higher Conversion Rates</h4>
+                        <p>Expect 70-80% from pre-qualified leads vs 50% from random visits</p>
+                    </div>
+                    <div class="benefit-item" style="border-top-color: white;">
+                        <span class="benefit-icon">⏰</span>
+                        <h4>Efficient Time Usage</h4>
+                        <p>Field executives visit only interested prospects</p>
+                    </div>
+                    <div class="benefit-item" style="border-top-color: white;">
+                        <span class="benefit-icon">💰</span>
+                        <h4>Better ROI</h4>
+                        <p>Same field team, significantly more orders</p>
+                    </div>
+                    <div class="benefit-item" style="border-top-color: white;">
+                        <span class="benefit-icon">✅</span>
+                        <h4>Quality Leads</h4>
+                        <p>Retailers who request visits are ready to buy, not just browsing</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="section faq-section">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Do our field executives need to install any app?</div>
+                    <div class="faq-answer">No. Everything works through WhatsApp and simple web links.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What if a retailer requests a visit but we don't service that area?</div>
+                    <div class="faq-answer">The request routes to our calling team who will assist and inform you.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Can we stop the feature if it's not working for us?</div>
+                    <div class="faq-answer">Yes, it can be disabled anytime with 24-hour notice.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How do we know if a visit actually happened?</div>
+                    <div class="faq-answer">Location tracking shows where the executive was when marking complete, plus timestamp verification.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What's the cost?</div>
+                    <div class="faq-answer">No additional cost - included as value-added service for Badho brand partners.</div>
+                </div>
+            </section>
+
+            <div class="getting-started">
+                <h2>Getting Started</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Feature activates on your brand pages within 1 week</p>
+                
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <h4>Step 1</h4>
+                        <p>Express Interest</p>
+                        <p>Confirm participation in Visit Request feature</p>
+                    </div>
+                    <div class="step-card">
+                        <h4>Step 2</h4>
+                        <p>Choose Your Approach</p>
+                        <p>Direct integration or manual dashboard management</p>
+                    </div>
+                    <div class="step-card">
+                        <h4>Step 3</h4>
+                        <p>Customize Form</p>
+                        <p>Add brand-specific questions (Optional)</p>
+                    </div>
+                    <div class="step-card">
+                        <h4>Step 4</h4>
+                        <p>Go Live</p>
+                        <p>Start receiving qualified leads</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>This feature is designed to bridge your digital presence with offline relationship building - the key to success in Indian B2B markets.</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">© 2024 Badho - B2B Marketplace Platform</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to all sections
+        document.querySelectorAll('.section, .comparison-section, .getting-started').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
